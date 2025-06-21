@@ -4,8 +4,7 @@ This project demonstrates how to build a real-time data processing system using 
 ## 🚀 Features
 
 - Real-time data streaming with WebSockets
-- Serverless functions for backend logic (AWS Lambda / Firebase Functions)
-- NoSQL database integration (Firestore / DynamoDB)
-- REST API fallback for non-real-time clients
+- Serverless functions for backend logic
+- NoSQL database integration 
 - Event-driven architecture using message queues or Pub/Sub
 - Lightweight, scalable, and cost-efficient
