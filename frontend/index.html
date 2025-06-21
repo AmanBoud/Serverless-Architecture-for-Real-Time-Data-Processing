@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IoT Sensor Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+      <h1 class="text-3xl font-bold text-center text-blue-600">
+        IoT Sensor Dashboard
+      </h1>
+
+      <!-- Search by Device ID -->
+      <div class="mt-4 flex gap-2">
+        <input
+          type="text"
+          id="searchDeviceId"
+          placeholder="Enter Device ID"
+          class="p-2 border rounded-md w-full"
+        />
+        <button
+          onclick="fetchSensorByDeviceId()"
+          class="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-700"
+        >
+          Search
+        </button>
+      </div>
+
+      <!-- Load Data Button -->
+      <div class="text-center mt-4">
+        <button
+          onclick="fetchData()"
+          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+        >
+          Load All Data
+        </button>
+      </div>
+
+      <!-- Sensor Data Table -->
+      <div class="overflow-x-auto mt-6">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead class="bg-blue-500 text-white">
+            <tr>
+              <th class="p-2 border">Device ID</th>
+              <th class="p-2 border">Temperature (°C)</th>
+              <th class="p-2 border">Humidity (%)</th>
+              <th class="p-2 border">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="sensor-table" class="bg-gray-100"></tbody>
+        </table>
+      </div>
+
+      <!-- Add Sensor Data Button -->
+      <div class="text-center mt-6">
+        <button
+          onclick="openCreateModal()"
+          class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700"
+        >
+          Add Sensor Data
+        </button>
+      </div>
+    </div>
+
+    <!-- Edit Sensor Modal -->
+    <div
+      id="editModal"
+      class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-lg font-semibold text-yellow-600">Edit Sensor Data</h2>
+        <input type="hidden" id="edit_device_id" />
+        <input
+          type="number"
+          id="edit_temperature"
+          placeholder="Temperature"
+          class="w-full p-2 border rounded-md mt-2"
+        />
+        <input
+          type="number"
+          id="edit_humidity"
+          placeholder="Humidity"
+          class="w-full p-2 border rounded-md mt-2"
+        />
+        <div class="flex justify-end gap-3 mt-4">
+          <button
+            onclick="closeEditModal()"
+            class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700"
+          >
+            Cancel
+          </button>
+          <button
+            onclick="updateSensorData()"
+            class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-700"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Create Sensor Modal -->
+    <div
+      id="createModal"
+      class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-lg font-semibold text-green-600">Add Sensor Data</h2>
+        <input
+          type="text"
+          id="device_id"
+          placeholder="Device ID"
+          class="w-full p-2 border rounded-md mt-2"
+        />
+        <input
+          type="number"
+          id="temperature"
+          placeholder="Temperature"
+          class="w-full p-2 border rounded-md mt-2"
+        />
+        <input
+          type="number"
+          id="humidity"
+          placeholder="Humidity"
+          class="w-full p-2 border rounded-md mt-2"
+        />
+        <div class="flex justify-end gap-3 mt-4">
+          <button
+            onclick="closeCreateModal()"
+            class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700"
+          >
+            Cancel
+          </button>
+          <button
+            onclick="addSensorData()"
+            class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
